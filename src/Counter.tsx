@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {RootState} from "./bll/store";
-import {getCounterValue} from "./bll/reducer";
+import {getCounterValue,incrementCounterValue} from "./bll/reducer";
 
 
 interface IMapStateProps {
@@ -9,7 +9,8 @@ interface IMapStateProps {
 };
 
 interface IMapDispatchProps {
-    getCounterValue: () => void
+    getCounterValue: () => void,
+    incrementCounterValue:()=>void
 };
 
 type Props = IMapStateProps & IMapDispatchProps;
@@ -25,7 +26,7 @@ const Counter = (props: Props) => {
             <h3> Value: {props.value} </h3>
 
             <div className="button">
-                <button>Increment</button>
+                <button onClick={()=> {props.incrementCounterValue()}}>Increment</button>
             </div>
 
         </div>
@@ -39,4 +40,4 @@ const mapStateToProps = (state: RootState):IMapStateProps => {
     }
 };
 
-export default connect(mapStateToProps,{getCounterValue})(Counter);
+export default connect(mapStateToProps,{getCounterValue,incrementCounterValue})(Counter);
