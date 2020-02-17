@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {RootState} from "./bll/store";
+import {getCounterValue} from "./bll/reducer";
 
 
 interface IMapStateProps {
@@ -32,7 +33,7 @@ const Counter = (props: Props) => {
 };
 
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: RootState):IMapStateProps => {
     return {
         value: state.counter.value
     }

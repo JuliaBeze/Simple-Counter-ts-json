@@ -1,13 +1,18 @@
 import axios from "axios";
 
+interface IResponseData {
+    value: number
+}
+
 const instance = axios.create({
-    baseURL:"http://localhost:3004/"
-})
+    baseURL: "http://localhost:3004/"
+});
 
 
 const counterApi = {
-    getCounterValue: () => {
-        return instance.get('counter')
+    async getValue(): Promise<number> {
+        let result = await instance.get<IResponseData>('counter')
+        return result.data.value
     }
 };
 
